@@ -36,21 +36,11 @@ def eval_single_rundir(pindex, offset, devices, params):
     model_dir = os.path.join(run_dir, t_set["save_models_subdir"])
     zetas = np.linspace(float(t_set["zetas_start"]), float(t_set["zetas_end"]), int(t_set["zetas_steps"]))
 
-    # in normal flow zetas is subset of zetas_eval, so this operation
-    # should not do anything. It is used in convergence script for externally
-    # constraining the zetas to evaluate on.
     if zeta_intersect:
         zetas = np.intersect1d(zetas, zetas_eval)
     else:
         zetas = zetas_eval
  
-    #if "seed" in t_set:
-        #seed = int(t_set["seed"])
-        ## random sources: sampling of dataloader, network initialization
-        #torch.manual_seed(seed)
-        #random.seed(seed)
-        #np.random.seed(seed)
-
     dataset_test_base = dataset_via_config(test_dataset_config)
     print(f"Test dataset has {len(dataset_test_base)} slices.")
 

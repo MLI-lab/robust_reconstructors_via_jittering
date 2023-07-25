@@ -47,12 +47,6 @@ def _read_zetas_from_first_rundir(run_dir, eval=False):
         zetas = np.linspace(float(t_set["zetas_start"]), float(t_set["zetas_end"]), int(t_set["zetas_steps"]))
     return zetas
 
-#def _calc_eps_for_alpha_xis(n, d, alphas, xis):
-    #return np.sqrt(d) * ( (np.square(alphas) - np.square(xis)) / np.sqrt(np.power(alphas, 4) + n*np.square(xis)))
-
-#def _calc_eps_for_lamb_xis(n, d, lambs, xis):
-    #return np.sqrt(d) * n * lambs / np.sqrt(n**2 * lambs**2 + n*(1+2*lambs)*xis**2 + xis**4)
-
 def evaluate(base_dir, fixed_noise_levels, nr_per_device = 1,
     df_save_dir = None, test_dataset_config = None, batch_size = 1,
     d_set_mapping = None, t_set_mapping = None,

@@ -16,7 +16,6 @@ from experiments.natural_images.steps.visualize import visualize_network_reconst
 step_name = "visualize"
 
 visualize_UNet_Adversarial025SigmaRGB_denoising = {
-    "base_dir"              : os.path.join("runs", "None/unet_adversarial_training_0.2559nl_50e_None_74500se_PGDat_5teits_color_Adamo_Nonelrs_50bs"),
     "base_dir"                : train_step_configs["adversarial_training_denoising_rgb"].artifact_path,
     "test_dataset_config"     : preprocessing_config_test,
     "adv_its"               : 100,

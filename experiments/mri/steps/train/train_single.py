@@ -118,10 +118,6 @@ def run_mri_unet_robust_reconstruction(d_config_train, d_config_val, t_set, base
     dataset_train = MRITransformedDataset(dataset=dataset_train_base, transform=AddGaussianNoise(mean=0, std=noise_level_train), device=device)
     dataset_val = MRITransformedDataset(dataset=dataset_val_base, transform=AddGaussianNoise(mean=0, std=noise_level_val), device=device)
 
-    #data_as_tensorlist = t_set["data_as_tensorlist"] if "data_as_tensorlist" in t_set else False
-    #dataset_train_preload = TensorListDataset(dataset_train, device=device) if data_as_tensorlist else dataset_train
-    #dataset_val_preload = TensorListDataset(dataset_val, device=device) if data_as_tensorlist else dataset_val
-
     dataset_train_loader = torch.utils.data.DataLoader(dataset_train,
         batch_size=t_set['train_dataloader_batch_size'], shuffle=True,
         num_workers=t_set['num_workers'], pin_memory=t_set['train_pin_memory'])
@@ -167,7 +163,6 @@ def run_mri_unet_robust_reconstruction(d_config_train, d_config_val, t_set, base
             'data_transform' : data_transform
         }
         print(f"Train with step size = {adv_step_size_factor} and use_best = {adv_use_best}, wd = {t_set['SGD_weight_decay']}")
-        #attackerModel(X, target=X, make_adv=True, **attack_kwargs)
 
         optimizer = None
         if "train_optimizer_name" in t_set:

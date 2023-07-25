@@ -11,10 +11,6 @@ from experiments.mri.configs.preprocess_configs import (
     preprocessing_config_val
 )
 
-# %%
-################################
-#### Base configuration (multiple settings are deprecated and not used anymore)
-################################
 t_set_base = {
     "epochs":200,
     "zetas_start" : 0,
@@ -106,8 +102,8 @@ hpsearch_jittering_mri_eval = {
 def set_hpsearch_dirs(c):
     hpsearch_dir_name = f"hpsearch_{c['method_name']}_unet_{c['epochs']}e_{c['reps']}reps_{c['noise_level']}nl_{c['alpha_start']}as_{c['alpha_end']}ae_{c['zetas_end']}ze_{c['zetas_steps']}zs"
     c['hpsearch_dir_name'] = hpsearch_dir_name
-    c['base_path_runs'] = os.path.join(base_artifact_path__default, step_name, "runs")#base_run_path, hpsearch_dir_name)
-    c['base_path_eval'] = os.path.join(base_artifact_path__default, step_name, "eval")#base_eval_path, hpsearch_dir_name)
+    c['base_path_runs'] = os.path.join(base_artifact_path__default, step_name, "runs")
+    c['base_path_eval'] = os.path.join(base_artifact_path__default, step_name, "eval")
 set_hpsearch_dirs(hpsearch_jittering_mri_train)
 set_hpsearch_dirs(hpsearch_jittering_mri_eval)
 

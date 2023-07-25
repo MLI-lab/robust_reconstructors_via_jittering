@@ -24,15 +24,15 @@ def _reg_filter_on_list(reg_filter : str, str_list : list[str]):
 
 def _for_each_step_config(experiments : str, steps : str, configs : str, funct : Callable, verbose : bool = False, stop_first : bool = False):
     matching_exps = _reg_filter_on_list(experiments, list(exp_step_dict.keys()))
-    for exp in matching_exps:
+    for exp_ind, exp in enumerate(matching_exps):
         if verbose:
             print(f"Experiment: {exp}")
         step_dict = exp_step_dict[exp]
         if step_dict is not None:
             matching_steps = _reg_filter_on_list(steps, list(exp_step_dict[exp].keys()))
             for step_ind, step in enumerate(matching_steps):
-                prepend_label_step = "└───" if step_ind == len(matching_steps)-1 else "├───"
-                prepend_label_conf = "    " if step_ind == len(matching_steps)-1 else "│   "
+                prepend_label_step = "└───" if step_ind == len(matching_steps)-1 and exp_ind == len(matching_exps)-1 else "├───"
+                prepend_label_conf = "    " if step_ind == len(matching_steps)-1 and exp_ind == len(matching_exps)-1 else "│   "
                 step_config_dict = step_dict[step]
                 if step_config_dict is not None:
                     matching_configs = _reg_filter_on_list(configs, list(step_config_dict.keys()))
